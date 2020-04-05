@@ -1,23 +1,29 @@
-
 var isValid = function(s) {
-    const stack = []
-    const keys = {
-        '(': ')',
-        '{': '}',
-        '[': ']',
+    
+    let stack = []
+
+    let brackets = {
+        "(" : ")",
+        "[" : "]",
+        "{" : "}"
     }
-    for (const ch of s) {
-        if (ch in keys) {
-            stack.push(keys[ch])
-            // console.log(stack)
-        } else {
-            if (stack.length === 0 || stack.pop() !== ch) {
+
+    for(let ch of s){
+        if(ch in brackets){
+            stack.push(brackets[ch])
+        }else{
+            if(stack.length === 0 || stack.pop() !== ch){
                 return false
+            }else{
+                continue
             }
         }
     }
+
     return stack.length === 0
+
+
 };
 
-console.log(isValid("(()())()"))
+console.log(isValid("([)]"))
 
